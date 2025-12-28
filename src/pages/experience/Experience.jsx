@@ -73,13 +73,12 @@ const Experience = () => {
                 </div>
                 <div className="xl:w-4/6">
                   <div className="flex items-start">
-                    <div className="timeline-wrapper">
+                    <div className="timeline-wrapper relative">
                       <div className="timeline" />
                       <div className="gradient-line w-1 h-full" />
+                      {/* Timeline dot added here */}
                     </div>
                     <div className="expText flex xl:gap-20 md:gap-10 gap-5 relative z-20">
-                      <div className="timeline-logo">
-                      </div>
                       <div>
                         <h1 className="font-semibold text-3xl">{card.title}</h1>
 
