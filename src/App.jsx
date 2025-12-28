@@ -13,16 +13,28 @@ import TechLogo from "./pages/skills/TechLogo";
 
 const App = () => (
   <Router>
-    <Navbar />
-    <Routes>
-      <Route path="/" element={<><Hero /></>} />
-      <Route path="/experience" element={<Experience />} />
-
-      <Route path="/project" element={<><FullStackShowCase /></>} />
-      <Route path="/skills" element={<><TechStack /> <TechLogo/> <FeatureCards /></> } />
-      <Route path="/contact" element={<><Contact /></>} />
-    </Routes>
-    <Footer />
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Hero />} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/project" element={<FullStackShowCase />} />
+          <Route 
+            path="/skills" 
+            element={
+              <>
+                <TechStack />
+                <TechLogo />
+                <FeatureCards />
+              </>
+            } 
+          />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
   </Router>
 );
 
