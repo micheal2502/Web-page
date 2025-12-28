@@ -5,15 +5,12 @@ import { useState } from "react";
 
 import Button from "../../components/Button";
 import { words } from "../../constants";
-import HeroExperience from "../../components/models/hero_models/HeroExperience";
-import AnimatedCounter from "../../components/AnimatedCounter";
 import { achievementsSection } from "../../constants";
 import InfiniteScroll from "../../components/InfiniteScroll";
 import TextType from "../../components/TextType";
+import CodeTypingAnimation from "../../components/CodeTypingAnimation";
 
 const Hero = () => {
-  const navigate = useNavigate();
-  const [activeSkill, setActiveSkill] = useState(null);
 
   useGSAP(() => {
     gsap.fromTo(
@@ -23,45 +20,6 @@ const Hero = () => {
     );
   });
 
-  // Personal skills matrix
-  const skillsMatrix = [
-    { 
-      name: "QUANTUM PROBLEM SOLVING", 
-      level: 95, 
-      category: "ANALYTICAL",
-      description: "Deconstructing complex systems into elegant algorithmic solutions"
-    },
-    { 
-      name: "FULL-STACK ARCHITECTURE", 
-      level: 90, 
-      category: "TECHNICAL",
-      description: "Building cohesive digital ecosystems from interface to infrastructure"
-    },
-    { 
-      name: "NEURAL UX DESIGN", 
-      level: 85, 
-      category: "CREATIVE",
-      description: "Crafting intuitive human-machine interfaces with predictive intelligence"
-    },
-    { 
-      name: "SYSTEM SYNTHESIS", 
-      level: 88, 
-      category: "STRATEGIC",
-      description: "Orchestrating scalable architectures for future-proof applications"
-    },
-    { 
-      name: "CONTINUOUS EVOLUTION", 
-      level: 95, 
-      category: "ADAPTIVE",
-      description: "Perpetual learning and adaptation to emerging technological paradigms"
-    },
-    { 
-      name: "COLLABORATIVE SYNCHRONIZATION", 
-      level: 90, 
-      category: "SOCIAL",
-      description: "Harmonizing team dynamics for maximum collective computational output"
-    },
-  ];
 
   // Core programming philosophies
   const corePhilosophies = [
@@ -120,66 +78,92 @@ const Hero = () => {
   ];
 
   return (
-    <section id="hero" className="relative overflow-hidden">
+<section id="hero" className="relative overflow-hidden pt-16 md:pt-48">
       <div className="absolute top-0 left-0 z-10">
         <img src="/images/bg.png" alt="" />
       </div>
 
-      <div className="hero-layout">
-        {/* LEFT: Hero Content */}
-        <header className="flex flex-col justify-center md:w-full w-screen md:px-20 px-5">
-          <div className="flex flex-col gap-7">
-            <div className="hero-text">
-              <h1>
-                Shaping
-                <span className="slide">
-                  <span className="wrapper">
-                    {words.map((word, index) => (
-                      <span
-                        key={index}
-                        className="flex items-center md:gap-3 gap-1 pb-2"
-                      >
-                        <img
-                          src={word.imgPath}
-                          alt="person"
-                          className="xl:size-12 md:size-10 size-7 md:p-2 p-1 rounded-full bg-white-50"
-                        />
-                        <span>{word.text}</span>
-                      </span>
-                    ))}
-                  </span>
+  {/* Add padding-top to push content below navbar */}
+  
+<div className="absolute top-0 left-0 z-10">
+    <img src="/images/bg.png" alt="" />
+  </div>
+
+
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 max-w-7xl mx-auto">
+  {/* LEFT: Hero Content */}
+  <header className="flex flex-col justify-center">
+    <div className="flex flex-col gap-6">
+      <div className="hero-text">
+        <h1>
+          Shaping
+          <span className="slide">
+            <span className="wrapper">
+              {words.map((word, index) => (
+                <span
+                  key={index}
+                  className="flex items-center md:gap-3 gap-1 pb-2"
+                >
+                  <img
+                    src={word.imgPath}
+                    alt="person"
+                    className="xl:size-12 md:size-10 size-7 md:p-2 p-1 rounded-full bg-white-50"
+                  />
+                  <span>{word.text}</span>
                 </span>
-              </h1>
-              <TextType 
-                text={["into real projects!", "that deliver results!", "create new future!"]}
-                typingSpeed={75}
-                pauseDuration={1500}
-                showCursor={true}
-                cursorCharacter="|"
-              />
-            </div>
-
-            <p className="text-white-50 md:text-xl relative z-10 pointer-events-none">
-              Hi, I'm Micheal, a developer based in Wellington with a passion for
-              code.
-            </p>
-
-            <Button text="See My Work" to="/project" className="md:w-80 md:h-16 w-60 h-12" />
-
-          </div>
-        </header>
-
-        {/* RIGHT: 3D Model or Visual */}
-        <figure>
-          <div className="hero-3d-layout">
-            <HeroExperience />
-          </div>
-        </figure>
+              ))}
+            </span>
+          </span>
+        </h1>
+        <TextType 
+          text={["into real projects!", "that deliver results!", "create new future!"]}
+          typingSpeed={75}
+          pauseDuration={1500}
+          showCursor={true}
+          cursorCharacter="|"
+        />
       </div>
-      <AnimatedCounter />
 
-      
+      <p className="text-white-50 md:text-lg relative z-10 pointer-events-none">
+        Hi, I'm Micheal, a developer based in Wellington with a passion for
+        code.
+      </p>
 
+      <Button text="See My Work" to="/project" className="md:w-72 md:h-14 w-60 h-12" />
+    </div>
+  </header>
+
+  {/* RIGHT: Code Editor Workspace */}
+  <figure className="w-full">
+    <div className="rounded-xl overflow-hidden border border-gray-800 bg-gray-900/50 backdrop-blur-sm shadow-lg">
+      {/* Editor Header */}
+      <div className="bg-gray-900 px-3 py-2.5 border-b border-gray-800">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-red-500"></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+          </div>
+          <div className="text-xs text-gray-400 font-mono">skills.js</div>
+        </div>
+      </div>
+
+      {/* Editor Content with Typing Animation */}
+      <div className="p-3 md:p-4 min-h-[240px]">
+        <CodeTypingAnimation />
+      </div>
+
+      {/* Editor Footer */}
+      <div className="bg-gray-900 px-3 py-1.5 border-t border-gray-800 text-[10px] text-gray-500 flex justify-between">
+        <div className="flex items-center gap-3">
+          <div>UTF-8</div>
+          <div>JavaScript</div>
+        </div>
+        <div>Ln 18, Col 1</div>
+      </div>
+    </div>
+  </figure>
+</div>
       {/* COGNITIVE ARCHITECTURE SECTION */}
       <section className="py-20 px-5 md:px-20">
         <div className="max-w-6xl mx-auto">
